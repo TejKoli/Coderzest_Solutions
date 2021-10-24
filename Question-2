@@ -1,0 +1,97 @@
+/*
+Problem Statement:-
+
+Mid-Semester exams are about to begin; but you forgot to prepare again. You need to solve the test on Google Classroom, where you get your questions, and Zoom, where you will be monitored by one or more supervisors. You plan to google the questions and answer them without getting caught.
+
+The duration of exam is F minutes. You need a total of K minutes of google search time during the exam to not fail it. There are N supervisors on zoom (numbered Nᵢ); for each valid, the i-th invigilator monitors your camera during the time interval Sᵢ to Eᵢ minutes. You somehow get hold of these times and now you want to know if you will be able to pass the exam if you google the answers during the times when no one is looking at you.
+
+Note: The time of googling need not be continuous and there can be multiple invigilators at some interval of time.
+
+Input Format
+
+The first line of the input contains a single integer T denoting the number of test cases. The description of each test case is as follows:
+
+The first line of each test case contains three space-separated integers F, K, and N.
+N lines follow, for every valid i, each of these lines contains two space-separated integers Sᵢ and Eᵢ.
+Constraints
+
+1 ≤ T ≤ 10⁵
+1 ≤ N ≤ 10⁵
+1 ≤ F ≤ 10⁹
+0 ≤ K ≤ F
+0 ≤ Sᵢ ≤ Eᵢ ≤ F, for each valid 0 ≤ i ≤ N
+The sum of N over all test cases does not exceed 2⋅10⁵
+Output Format
+
+For each test case, print a single line containing the string "YES" if it is possible to pass the exam or "NO" if it is impossible.
+
+Sample Input 0
+
+3
+10 10 1
+0 10
+10 2 2
+0 5
+7 10
+14 7 2
+0 3
+5 9
+Sample Output 0
+
+NO
+YES
+YES
+Explanation 0
+
+Example case 1: There is no point during the exam when you will not be monitored, so you will be unable to google even for a single second and will eventually fail the exam.
+Example case 2: You can google for 2 minutes (in the time interval [5,7]), and hence will be able to pass the exam.
+Example case 3: You can google for 7 minutes (in the time intervals [3,5] and [9,14]), and hence will be able to pass the exam.
+*/
+
+
+
+/*
+Answer:-
+*/
+
+#include<iostream>
+using namespace std;
+void sub(int a[],int b[],int c[],int l){
+    for(int i=0;i<l;i++){
+    /*if(l==0){
+        cout<<"NO";
+    }*/
+    if(a[i]-b[i]-c[i]>=0){      // Test time - Copy time(google) - Investicating time
+                cout<<"YES"<<endl;    
+            }
+        
+    else{
+        cout<<"NO"<<endl;		// 
+            }   
+}
+}
+
+int main(){
+    int T;			// Test cases
+    cin>>T;
+    int F[T],K[T],N[T],m[T]={0};		// F=total time K=googleing time N=no. investicators m=time for investicating
+    for(int i=0;i<T;i++){
+        cin>>F[i];
+        cin>>K[i];
+        cin>>N[i];
+        int S[N[i]],E[N[i]],temp[F[i]]={0};  //S=entery time of investicator E=exit time of investicator temp=total time cha array ahe!
+        for(int j=0;j<N[i];j++){		// for loop for investicators investicating time
+            cin>>S[j];
+            cin>>E[j];
+            for(int b=S[j];b<E[j];b++){		// Increamenting the investicating time 
+            	if(temp[b]>=0){ 	
+					m[i]++;			// 
+					temp[b]=-1;		// 
+				}
+			}
+          	
+        }
+   }
+        
+    sub(F,K,m,T);
+}
